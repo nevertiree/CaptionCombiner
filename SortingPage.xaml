@@ -1,0 +1,54 @@
+﻿<Page x:Class="CaptionCombiner.SortingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CaptionCombiner"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SortingPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ImageListBox" 
+                  HorizontalAlignment="Center" VerticalAlignment="Top"
+                  AllowDrop="True" SelectionMode="Extended" 
+                  Grid.Column="4" Grid.Row="5"
+                  Background="#FF1A52B1" 
+                  SelectionChanged="ListView_SelectionChanged" 
+                  MouseMove="ImageListView_MouseMove" 
+                  Drop="ImageListView_Drop" 
+                  Height="450"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  MouseLeftButtonDown="ImageListView_MouseLeftButtonDown" 
+                 PreviewMouseMove="ImageListBox_PreviewMouseMove" 
+                 PreviewMouseLeftButtonDown="ImageListBox_PreviewMouseLeftButtonDown" 
+                 ScrollViewer.CanContentScroll="True"
+                 >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="MaxHeight" Value="50" />
+                    <Setter Property="MaxWidth" Value="50" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+                </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+    </Grid>
+</Page>
